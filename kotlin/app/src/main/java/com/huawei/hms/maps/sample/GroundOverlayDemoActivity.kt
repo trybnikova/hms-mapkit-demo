@@ -36,6 +36,7 @@ import com.huawei.hms.maps.HuaweiMap
 import com.huawei.hms.maps.OnMapReadyCallback
 import com.huawei.hms.maps.SupportMapFragment
 import com.huawei.hms.maps.model.*
+import com.huawei.hms.maps.sample.utils.BlueTileProvider
 import com.huawei.hms.maps.sample.utils.CheckUtils
 import com.huawei.hms.maps.sample.utils.MapUtils
 import java.io.File
@@ -89,6 +90,10 @@ class GroundOverlayDemoActivity : AppCompatActivity(), OnMapReadyCallback {
         hMap?.isMyLocationEnabled = true
         hMap?.uiSettings?.isZoomControlsEnabled = false
         hMap?.moveCamera(CameraUpdateFactory.newLatLngZoom(LatLng(48.893478, 2.334595), 10f))
+        hMap?.mapType = HuaweiMap.MAP_TYPE_NONE
+        hMap?.setOnMapLoadedCallback {
+            hMap?.addTileOverlay(TileOverlayOptions().tileProvider(BlueTileProvider()))
+        }
     }
 
     /**
